@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer" />
+            <style>
+                body {
+                    background-color: rgb(59, 57, 54);
+                    text-align: center;
+                    margin: 0;
+                    font-family: Arial, sans-serif;
+                }
+                .page-wrapper {
+                    display: flex;
+                    min-height: 100vh;
+                    align-items: flex-start;
+                    margin-top: 50px;
+                }
+                .header-container {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding: 0 20px;
+                }
+                h1 {
+                    color: rgb(65, 158, 115);
+                    padding-left: 30px;
+                    padding-right: 30px;
+                    padding-bottom: 5px;
+                    padding-top: 5px;
+                    border: 4px;
+                    border-style: solid;
+                    border-color: rgb(250, 246, 207);
+                    border-radius: 4px;
+                    margin: 0;
+                    flex-shrink: 0;
+                    flex-grow: 0;
+                }
+                .placeholder {   
+                    min-width: 130px;
+                    visibility: hidden;
+                }
+                p {
+                    color: rgb(250, 246, 207);
+                    margin: auto; 
+                } 
+                button {
+                    padding: 10px;
+                    background-color:rgb(65, 158, 115);
+                    color: rgb(250, 246, 207);
+                    border-radius: 4px;
+                    border: 4px;
+                    border-color: rgb(250, 246, 207);
+                    border-style: solid;
+                    cursor: pointer;
+                    margin-left: 0;
+                    text-align: right;
+                }
+                .button-group {
+                    display: flex;
+                    align-items: right;
+                    gap: 6px;
+                    flex-shrink: 0;
+                    flex-grow: 0;
+                    min-width: 130px;
+                }
+                #sidebar {
+                    position: fixed;
+                    width: 0;                   
+                    top: 60px;
+                    overflow-y: auto;
+                    background-color: rgb(59, 57, 54);
+                    color: rgb(65, 158, 115);
+                    padding-top: 10px;
+                    transition: width 0.3s ease, min-width 0.3 ease;
+                    display: flex;
+                    flex-direction: column;
+                    overflow-x: hidden;
+                    flex-shrink: 0;
+                }
+                #sidebar a {
+                    padding: 10px;
+                    text-decoration: none;
+                    color: rgb(250, 246, 207);
+                    white-space: nowrap;
+                }
+                #sidebar.open {
+                    width: 90px;
+                    min-width: 90px;
+                    border: 2px solid rgb(250, 246, 207);
+                    margin-bottom: 10px;
+                    left: 0;
+                }
+                #main-content {
+                    flex-grow: 1;
+                    padding: 20px;
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: center;
+                    flex-direction: column;
+                    text-align: center;
+                    min-height: calc(100vh - 60px);
+                }
+                h2 {
+                    color: rgb(65, 158, 115);
+                }
+                .about-me-content-wrapper {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 15px;
+                    text-align: left;
+                    margin-top: 10px;
+                }
+                .key-skills-header {
+                    color: rgb(65, 158, 115);
+                    margin: 0;
+                    padding-bottom: 5px;
+                    border-bottom: 1px solid rgba(65, 158, 115, 0.5);
+                }
+                .about-paragraph {
+                    color: rgb(250, 246, 207);
+                    margin: 0;
+                }
+                .skills-list {
+                    list-style-type: circle;
+                    color: rgb(65, 158, 115);
+                    padding-left: 20px;
+                    margin: 0;
+                }
+                .skills-list li {
+                    color: rgb(250, 246, 207);
+                }
+                .content-section {
+                    padding: 20px;
+                    border: 4px solid rgb(250, 246, 207);
+                    border-radius: 4px;
+                    margin-bottom: 10px;
+                    max-width: 800px;
+                    width: 100%;
+                    margin-left: auto;
+                    margin-right: auto;
+                    text-align: center;
+                }
+                .doc-link-button {
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 8px;
+                    color: rgb(250, 246, 207);
+                    background-color: rgb(65, 158, 115);
+                    text-decoration: none;
+                    padding: 8px 15px;
+                    border-radius: 4px;
+                    margin-top: 15px;
+                    transition: background-color 0.2s;
+                }
+                .doc-link-button:hover {
+                    background-color: rgb(51, 119, 88);
+                }
+                .hidden {
+                    display: none;
+                }
+                .active {
+                    display: block;
+                }
+                #menu-toggle {
+                    position: fixed;
+                    top: 15px;
+                    left: 15px;
+                    z-index: 100;
+                    padding: 10px 15px;
+                    background-color: rgb(65, 158, 115);
+                    color: rgb(250, 246, 207);
+                    border: none;
+                    cursor: pointer;
+                }
+                @media (max-width: 600px) {
+                    .placeholder, h1 {
+                        display: none;
+                    }
+                    .button-group {
+                        flex-grow: 1;
+                        min-width: unset;
+                        justify-content: center;
+                        flex-shrink: 1;
+                    }
+                    .header-container {
+                        padding: 0 10px;
+                        justify-content: center;
+                    }
+                    #menu-toggle {
+                        top: 80px;
+                    }
+                }
+            </style>       
+    </head>
+    <body>
+        <title>Adam Snow</title>
+        <div class="header-container">
+            <span class="placeholder"></span>
+            <h1 class="logo">Adam Snow</h1>
+            <div class="button-group">
+                <a href="https://www.instagram.com/adam_snow101" target="_blank">
+                    <button class="instagram-button">
+                        <i class="fab fa-instagram"></i> 
+                        <style>
+                            .instagram-button {
+                                padding: 6px;
+                                font-size: 26px;
+                            }
+                        </style>
+                    </button>
+                </a>    
+                <a href="https://ca.linkedin.com/in/adam-elliott-snow-1663a72a2" target="_blank">
+                    <button class="linkedin-button">
+                        <i class="fab fa-linkedin"></i>
+                        <style>
+                        .linkedin-button {
+                            padding: 6px;
+                            font-size: 26px;
+                        }
+                        </style>
+                    </button>
+                </a>
+                <a href="https://www.facebook.com/adam.snow.14289" target="_blank">
+                    <button class="facebook-button">
+                        <i class="fab fa-facebook"></i>
+                        <style>
+                        .facebook-button {
+                            padding: 6px;
+                            font-size: 26px;
+                        }
+                        </style>
+                    </button>
+                </a>
+                <a href="https://steamcommunity.com/id/WallaceXVII/" target="_blank">
+                    <button class="linkedin-button">
+                        <i class="fab fa-steam"></i>
+                        <style>
+                        .steam-button {
+                            padding: 6px;
+                            font-size: 26px;
+                        }
+                        </style>
+                    </button>
+                </a>
+            </div>
+        </div> 
+        <!--Home Section, also default-->
+        <div class="page-wrapper">
+            <main id="main-content">
+                <section id="section1" class="content-section active">
+                    <h2>Welcome to My Portfolio & Sandbox: Adam Snow <br>Learning Developer & IT Specialist</br></h2>
+                    <p style="max-width: 600px; margin: 10px auto 30px auto;">
+                    I combine a solid foundation in IT Support & Computer Repair with a passion for learning Front-End Web Development. This site demonstrates my skills in creating modern, responsive layouts using native HTML, CSS, and JavaScript.
+                    </p>
+                    <div class="skill-cards-container" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
+                        <div class="skill-card" style="width: 250px; padding: 20px; border: 2px solid #419E73; border-radius: 8px; background-color: rgba(65, 158, 115, 0.1);">
+                            <i class="fas fa-code" style="font-size: 36px; color: #419E73; margin-bottom: 10px;"></i>
+                            <h3 style="color: #419E73; margin-top: 5px;">Pure Web Development</h3>
+                            <p style="font-size: 0.9em; margin: 0;">Focus on vanilla JavaScript and building accessible CSS layouts without frameworks.</p>
+                        </div>
+                        <div class="skill-card" style="width: 250px; padding: 20px; border: 2px solid #419E73; border-radius: 8px; background-color: rgba(65, 158, 115, 0.1);">
+                            <i class="fas fa-tools" style="font-size: 36px; color: #419E73; margin-bottom: 10px;"></i>
+                            <h3 style="color: #419E73; margin-top: 5px;">IT & Diagnostics</h3>
+                            <p style="font-size: 0.9em; margin: 0;">Extensive background in hardware & software repairs, troubleshooting and network support.</p>
+                        </div>
+                    </div>
+                    <h3 style="margin-top: 40px; color: rgb(250, 246, 207);">What would you like to explore first?</h3>
+                    <div style="margin-top: 15px;">
+                        <a href="#section4" onclick="showContent('section4', this, event)" style="text-decoration: none;">
+                            <button class="cta-button" style="padding: 12px 25px; background-color: #419E73; color: white; border: none; border-radius: 5px; cursor: pointer; margin-right: 15px; font-size: 1.1em;">
+                                View My Projects
+                            </button>
+                        </a>
+                        <a href="#section2" onclick="showContent('section2', this, event)" style="text-decoration: none;">
+                            <button class="cta-button" style="padding: 12px 25px; background-color: #419E73; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 1.1em;">
+                                Learn About Me
+                            </button>
+                        </a>
+                    </div>             
+                </section>
+                <!--About Me section-->
+                <section id="section2" class="content-section hidden">
+                    <h2>My Background and Interests</h2>
+                    <div class="about-me-content-wrapper">
+                        <p class="about-paragraph">
+                            I am a passionate developer with a background in IT support and computer repair and a focus on learning how to building engaging user interfaces.
+                        </p>
+                        <h3 class="key-skills-header">Key Skills:</h3>
+                        <ul class="skills-list">
+                            <li>Computer repair, hardware & software</li>
+                            <li>Extensive front end sales experience</li>
+                            <li>HTML5 / CSS3</li>
+                            <li>JavaScript (ES6+)</li>
+                            <li>Game Development (Canvas API)</li>
+                        </ul>
+                        <a href="https://docs.google.com/document/d/1jk4G5b6bUNwLdujbsVEwSUuLTdXRl-v9/edit?usp=sharing&ouid=110479650595263035273&rtpof=true&sd=true" target="_blank" rel="noopener noreferrer" class="doc-link-button">
+                            <i class="fas fa-file-alt"></i> <span>View Full Resume (Google Docs)</span>
+                        </a>
+                    </div>
+                </section>
+                <!--Photos section, under development-->
+                <section id="section3" class="content-section hidden">
+                    <h2>My Photography</h2>
+                    <p style="max-width: 600px; margin: 10px auto 30px auto;">
+                        The Photos section is a space dedicated to my love of photography. Please note that this section is currently under active development. 
+                    </p>
+                </section> 
+                <!--Projects section, also under development-->
+                <section id="section4" class="content-section hidden">
+                    <h2>My Projects</h2>                    
+                    <p style="max-width: 600px; margin: 10px auto 30px auto;">
+                        The Projects section is where I will link/upload any projects I deem worthy. Please note that this section is currently under active development. 
+                    </p>                    
+                </section>
+            </main>
+            <button id="menu-toggle">☰</button>
+            <nav id="sidebar">
+                <a href="#section1" onclick="showContent('section1', this, event)" class="active-link">Home</a>
+                <a href="#section2" onclick="showContent('section2', this, event)">About Me</a>
+                <a href="#section3" onclick="showContent('section3', this, event)">Photos</a>
+                <a href="#section4" onclick="showContent('section4', this, event)">Projects</a>
+            </nav>
+        </div>
+
+        <script>
+            const sidebar = document.getElementById('sidebar');
+            const toggleButton = document.getElementById('menu-toggle');
+            const contentSections = document.querySelectorAll('.content-section');
+
+            toggleButton.addEventListener('click', function() {
+                sidebar.classList.toggle('open');
+            });
+            function showContent(sectionId, clicked, event) {
+                if (event) {
+                    event.preventDefault();
+                }
+                contentSections.forEach(section => {
+                    section.classList.add('hidden');
+                    section.classList.remove('active')
+                });
+                const targetSection = document.getElementById(sectionId);
+                if (targetSection) {
+                    targetSection.classList.remove('hidden');
+                    targetSection.classList.add('active');
+                }
+                sidebar.classList.remove('open');
+            }
+        </script>
+    </body>
+    </html>
