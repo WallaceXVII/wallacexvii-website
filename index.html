@@ -19,6 +19,7 @@
                     margin-top: 50px;
                 }
                 .header-container {
+                    position: relative;
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
@@ -26,6 +27,10 @@
                 }
                 h1 {
                     color: rgb(65, 158, 115);
+                    position: absolute;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    z-index: 10;
                     padding-left: 30px;
                     padding-right: 30px;
                     padding-bottom: 5px;
@@ -35,12 +40,15 @@
                     border-color: rgb(250, 246, 207);
                     border-radius: 4px;
                     margin: 0;
-                    flex-shrink: 0;
-                    flex-grow: 0;
                 }
                 .placeholder {   
-                    min-width: 170px;
+                    min-width: 210px;
                     visibility: hidden;
+                }
+                .placeholder-left {
+                    min-width: 200px;
+                    visibility: hidden;
+                    flex-shrink: 0;
                 }
                 p {
                     color: rgb(250, 246, 207);
@@ -60,11 +68,9 @@
                 }
                 .button-group {
                     display: flex;
+                    justify-content: flex-end;
                     align-items: right;
                     gap: 6px;
-                    flex-shrink: 0;
-                    flex-grow: 0;
-                    min-width: 170px;
                 }
                 #sidebar {
                     position: fixed;
@@ -198,7 +204,7 @@
     <body>
         <title>Adam Snow</title>
         <div class="header-container">
-            <span class="placeholder"></span>
+            <span class="placeholder-left"></span>
             <h1 class="logo">Adam Snow</h1>
             <div class="button-group">
                 <a href="https://www.instagram.com/adam_snow101" target="_blank">
@@ -362,6 +368,3 @@
         </script>
     </body>
     </html>
-
-
-
