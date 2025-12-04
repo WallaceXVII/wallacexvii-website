@@ -198,6 +198,75 @@
                     #menu-toggle {
                         top: 80px;
                     }
+                }     
+                .project-card-link {
+                    text-decoration: none !important;
+                    color: inherit !important;
+                }
+                .project-card-link .project-text,
+                .project-card-link:link .project-text,
+                .project-card-link:visited .project-text,
+                .project-card-link:hover .project-text {
+                    text-decoration: none !important; 
+                    color: rgb(65, 158, 115) !important; 
+                }
+                .project-card-link .card-title {
+                    color: rgb(65, 158, 115);
+                    font-size: 1.5em;
+                    margin-top: 5px;
+                }
+                .project-card-link .card-description {
+                    color: currentColor;
+                    font-size: 0.9em;
+                    margin: 0;
+                }
+                .project-card-link .cta-text {
+                    color: rgb(65, 158, 115);
+                    display: block;
+                    margin-top: 10px;
+                }
+                .project-card-link:hover .skill-card {
+                    transform: translateY(-3px); 
+                    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5); 
+                    border-color: rgb(250, 246, 207);
+                }
+                .project-card-link,
+                .project-card-link:link,
+                .project-card-link:visited,
+                .project-card-link:hover {
+                    color: rgb(250, 246, 207) !important; 
+                    text-decoration: none !important; 
+                }
+                .skill-card {
+                    width: 250px; padding: 20px; border: 2px solid rgb(65, 158, 115); 
+                    border-radius: 8px; background-color: rgba(65, 158, 115, 0.1);
+                    text-align: center; transition: transform 0.2s, box-shadow 0.2s;
+                }
+                .project-card-link .card-title,
+                .project-card-link:visited .card-title {
+                    color: rgb(65, 158, 115) !important; 
+                    text-decoration: none !important;
+                    font-size: 1.5em; 
+                    margin-top: 5px;
+                }
+                .project-card-link .card-description,
+                .project-card-link:visited .card-description {
+                    color: rgb(250, 246, 207) !important;
+                    text-decoration: none !important;
+                    font-size: 0.9em;
+                    margin: 0;
+                }
+                .project-card-link .cta-text,
+                .project-card-link:visited .cta-text {
+                    color: rgb(65, 158, 115) !important;
+                    text-decoration: none !important;
+                    display: block;
+                    margin-top: 10px;
+                }
+                .skill-card:hover { 
+                    transform: translateY(-3px); 
+                    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
+                    border-color: rgb(250, 246, 207); 
                 }
             </style>       
     </head>
@@ -330,7 +399,21 @@
                     <h2>My Projects</h2>                    
                     <p style="max-width: 600px; margin: 10px auto 30px auto;">
                         The Projects section is where I will link/upload any projects I deem worthy. Please note that this section is currently under active development. 
-                    </p>                    
+                    </p> 
+                    <div style="display: flex; justify-content: center;">
+                        <a  href="./projects/tictactoe.html" 
+                            target="_blank" 
+                            rel="noopener noreferrer" 
+                            class="project-card-link">
+                            <div class="skill-card interactive-card">
+                                <div class="card-text-wrapper">
+                                    <div class="card-title">Tic Tac Toe</div>
+                                    <div class="card-description">Simple Tic Tac Toe game built in HTML and JS.</div>
+                                    <div class="cta-text">Click to Launch ↗</div>
+                                </div>
+                            </div>
+                        </a> 
+                    </div>               
                 </section>
             </main>
             <button id="menu-toggle">☰</button>
