@@ -238,9 +238,15 @@
                     text-decoration: none !important; 
                 }
                 .skill-card {
-                    width: 250px; padding: 20px; border: 2px solid rgb(65, 158, 115); 
-                    border-radius: 8px; background-color: rgba(65, 158, 115, 0.1);
-                    text-align: center; transition: transform 0.2s, box-shadow 0.2s;
+                    width: 250px; 
+                    min-height: 125px;
+                    padding: 20px; 
+                    border: 2px solid rgb(65, 158, 115); 
+                    border-radius: 8px; 
+                    background-color: rgba(65, 158, 115, 0.1);
+                    text-align: center; 
+                    transition: transform 0.2s, box-shadow 0.2s;
+                    margin: 5px;
                 }
                 .project-card-link .card-title,
                 .project-card-link:visited .card-title {
@@ -356,7 +362,7 @@
                     <h3 style="margin-top: 40px; color: rgb(250, 246, 207);">What would you like to explore first?</h3>
                     <div style="margin-top: 15px;">
                         <a href="#section4" onclick="showContent('section4', this, event)" style="text-decoration: none;">
-                            <button class="cta-button" style="padding: 12px 25px; background-color: #419E73; color: white; border: none; border-radius: 5px; cursor: pointer; margin-right: 15px; font-size: 1.1em;">
+                            <button class="cta-button" style="padding: 12px 25px; background-color: #419E73; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 1.1em;">
                                 View My Projects
                             </button>
                         </a>
@@ -400,7 +406,7 @@
                     <p style="max-width: 600px; margin: 10px auto 30px auto;">
                         The Projects section is where I will link/upload any projects I deem worthy. Please note that this section is currently under active development. 
                     </p> 
-                    <div style="display: flex; justify-content: center;">
+                    <div style="display: flex; justify-content: center; flex-wrap: wrap;">
                         <a  href="./projects/tictactoe.html" 
                             target="_blank" 
                             rel="noopener noreferrer" 
@@ -409,11 +415,23 @@
                                 <div class="card-text-wrapper">
                                     <div class="card-title">Tic Tac Toe</div>
                                     <div class="card-description">Simple Tic Tac Toe game built in HTML and JS.</div>
-                                    <div class="cta-text">Click to Launch ↗</div>
+                                    <div class="cta-text">Click to Launch ⮭</div>
                                 </div>
                             </div>
                         </a> 
-                    </div>               
+                        <a  href="./projects/Command Helper.exe" 
+                            download="Command Helper.exe" 
+                            class="project-card-link download-link-card">
+                            <div class="skill-card ddownload-card">
+                                <div class="card-text-wrapper">
+                                    <div class="card-title">Command Helper </div>
+                                    <div class="card-description">Simple program built in Python that runs helpful commands easily and fast.</div>
+                                    <div class="cta-text">Click to Download ⮯</div>
+                                </div>
+                            </div>
+                        </a> 
+                    </div>    
+                               
                 </section>
             </main>
             <button id="menu-toggle">☰</button>
